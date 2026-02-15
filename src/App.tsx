@@ -550,7 +550,6 @@ function AllWorkGallery() {
 
   // Drei Phasen: 1) Einscrollen, 2) Fix in der Mitte; 3) Stuck wenn nächste Sektion kurz vor Eintritt (rect.bottom ≈ 100vh) → smoothes Wegscrollen
   const EXIT_STUCK_THRESHOLD_VH = 98; // Stuck, wenn nächste Sektion kurz außerhalb (Sektionsende bei 98vh) → smoothes Wegscrollen
-  const EXIT_CENTER_OFFSET_VH = 48;  // Textmitte 48vh über Sektionsende → bei Wechsel (98vh) exakt bei 50vh, kein Sprung
   useEffect(() => {
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
