@@ -1048,26 +1048,22 @@ function FooterSection() {
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
-  // Cookiebot-Banner nach der Loading-Animation anzeigen (nur wenn noch keine Antwort)
+  // Cookiebot erst nach der Loading-Animation laden, dann Banner anzeigen
   useEffect(() => {
     if (isLoading) return;
-    const showCookiebot = () => {
+    const cbid = 'f5c9fb2a-0dc7-4f27-af36-213b2872b14e';
+    if (document.getElementById('Cookiebot')) return; // schon geladen
+    const script = document.createElement('script');
+    script.id = 'Cookiebot';
+    script.src = 'https://consent.cookiebot.com/uc.js';
+    script.setAttribute('data-cbid', cbid);
+    script.setAttribute('data-blockingmode', 'auto');
+    script.type = 'text/javascript';
+    script.onload = () => {
       const cb = window.Cookiebot;
-      if (cb && typeof cb.show === 'function' && !cb.hasResponse) {
-        cb.show();
-        return true;
-      }
-      return false;
+      if (cb && typeof cb.show === 'function' && !cb.hasResponse) cb.show();
     };
-    if (showCookiebot()) return;
-    const id = setInterval(() => {
-      if (showCookiebot()) clearInterval(id);
-    }, 100);
-    const timeout = setTimeout(() => clearInterval(id), 5000);
-    return () => {
-      clearInterval(id);
-      clearTimeout(timeout);
-    };
+    document.head.appendChild(script);
   }, [isLoading]);
 
   return (
