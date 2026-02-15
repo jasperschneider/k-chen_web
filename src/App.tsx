@@ -5,6 +5,15 @@ import { ArrowRight } from 'lucide-react';
 import { ChatWidget } from '@/components/ChatWidget';
 import './App.css';
 
+declare global {
+  interface Window {
+    Cookiebot?: {
+      show: () => void;
+      hasResponse?: boolean;
+    };
+  }
+}
+
 gsap.registerPlugin(ScrollTrigger);
 
 // Loading Screen Component
@@ -1038,6 +1047,28 @@ function FooterSection() {
 // Main App Component
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+
+  // Cookiebot-Banner nach der Loading-Animation anzeigen (nur wenn noch keine Antwort)
+  useEffect(() => {
+    if (isLoading) return;
+    const showCookiebot = () => {
+      const cb = window.Cookiebot;
+      if (cb && typeof cb.show === 'function' && !cb.hasResponse) {
+        cb.show();
+        return true;
+      }
+      return false;
+    };
+    if (showCookiebot()) return;
+    const id = setInterval(() => {
+      if (showCookiebot()) clearInterval(id);
+    }, 100);
+    const timeout = setTimeout(() => clearInterval(id), 5000);
+    return () => {
+      clearInterval(id);
+      clearTimeout(timeout);
+    };
+  }, [isLoading]);
 
   return (
     <>
