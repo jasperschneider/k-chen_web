@@ -548,8 +548,8 @@ function AllWorkGallery() {
     { src: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=85', posClass: 'top-1/4 left-1 w-14 md:top-1/3 md:left-1/4 md:w-44', parallaxLayer: -0.65 },
   ];
 
-  // Drei Phasen: 1) Einscrollen, 2) Fix in der Mitte; 3) Stuck wenn nächste Sektion kurz vor Eintritt (rect.bottom ≈ 100vh) → smoothes Wegscrollen
-  const EXIT_STUCK_THRESHOLD_VH = 98; // Stuck, wenn nächste Sektion kurz außerhalb (Sektionsende bei 98vh) → smoothes Wegscrollen
+  // Drei Phasen: Einscrollen, Fix in der Mitte, Stuck wenn nächste Sektion kurz vor Eintritt → smoothes Wegscrollen
+  const EXIT_STUCK_THRESHOLD_VH = 98;
   useEffect(() => {
     const wrapper = wrapperRef.current;
     if (!wrapper) return;

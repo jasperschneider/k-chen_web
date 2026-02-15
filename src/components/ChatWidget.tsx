@@ -205,7 +205,7 @@ export function ChatWidget() {
   };
 
   const glassBlack = 'bg-black/70 backdrop-blur-xl border border-white/20';
-  // Glas-Morphismus: weniger Deckkraft, starker Blur → Hintergrund scheint durch; Umrandung + Schatten heben vom Seitenweiß ab
+  // Glas-Morphismus: weniger Deckkraft, starker Blur
   const chatPanelOuter = 'backdrop-blur-2xl bg-white/50 border border-gray-200/90 shadow-[0_8px_32px_rgba(0,0,0,0.08),0_2px_12px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.9)]';
   const chatAreaBg = 'bg-white/35 backdrop-blur-2xl border-t border-gray-200/50';
   const chatBubbleAssistant = 'bg-white/55 backdrop-blur-xl border border-white/80 text-gray-900 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.9)]';
