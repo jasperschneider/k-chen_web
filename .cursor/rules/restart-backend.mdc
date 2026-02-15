@@ -1,0 +1,15 @@
+---
+description: Nach Änderungen am Backend (server.js, .env) den Chat-Server selbst neu starten
+globs: server.js,.env
+alwaysApply: false
+---
+
+# Backend nach Änderungen neu starten
+
+Wenn du `server.js` oder `.env` änderst, starte den Backend-Server danach **selbst** neu:
+
+1. Prozess auf Port 3001 beenden: `kill -9 $(lsof -ti :3001) 2>/dev/null`
+2. Kurz warten: `sleep 2`
+3. Im Projektordner `npm run server` im **Hintergrund** starten (is_background: true)
+
+So läuft der Chat-API-Server mit den neuesten Änderungen, ohne dass der Nutzer manuell neu starten muss.
